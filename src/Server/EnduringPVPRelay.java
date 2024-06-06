@@ -31,8 +31,9 @@ public class EnduringPVPRelay implements Runnable {
         try {
             String player1userName = player1in.readLine();
             String player2userName = player2in.readLine();
-            player1out.write(player2userName);
-            player2out.write(player1userName);
+            System.out.println("Player 1: " + player1userName + "Player 2: " + player2userName);
+            player1out.write(player2userName + "\n");
+            player2out.write(player1userName + "\n");
             player1out.flush();
             player2out.flush();
             for (int i = 5; i > 0; i--){
@@ -56,14 +57,14 @@ public class EnduringPVPRelay implements Runnable {
             try {
                 player1life = player1in.readLine();
                 player2life = player2in.readLine();
-                if(player1life.equals("gameEnd")){
+                if(player1life.equals("gameOver")){
                     player1out.write("end\nloser\n");
                     player2out.write("end\nwinner\n");
                     player1out.flush();
                     player2out.flush();
                     break;
                 }
-                else if(player2life.equals("gameEnd")){
+                else if(player2life.equals("gameOver")){
                     player1out.write("end\nwinner\n");
                     player2out.write("end\nloser\n");
                     player1out.flush();

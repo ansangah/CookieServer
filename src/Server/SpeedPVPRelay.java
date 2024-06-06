@@ -31,8 +31,9 @@ public class SpeedPVPRelay implements Runnable {
         try {
             String player1userName = player1in.readLine();
             String player2userName = player2in.readLine();
-            player1out.write(player2userName);
-            player2out.write(player1userName);
+            System.out.println("Player 1: " + player1userName + "Player 2: " + player2userName);
+            player1out.write(player2userName + "\n");
+            player2out.write(player1userName + "\n");
             player1out.flush();
             player2out.flush();
             for (int i = 5; i > 0; i--){
@@ -82,6 +83,7 @@ public class SpeedPVPRelay implements Runnable {
                     player2out.write("end\nloser\n");
                     player1out.flush();
                     player2out.flush();
+                    break;
                 }
                 else{
                     player1out.write(player2position + "\n");

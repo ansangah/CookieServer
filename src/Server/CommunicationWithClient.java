@@ -186,11 +186,13 @@ public class CommunicationWithClient implements Runnable {
 
     private void applySpeedPVP() {
         Server.SpeedMatchingQueue.add(this.socket);
+        System.out.println("applySpeedPVP");
         isInPVPMode = true;
     }
 
     private void applyEnduringPVP() {
         Server.EnduringMatchingQueue.add(this.socket);
+        System.out.println("applyEnduringPVP");
         isInPVPMode = true;
     }
 }
