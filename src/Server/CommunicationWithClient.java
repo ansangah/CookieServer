@@ -38,6 +38,7 @@ public class CommunicationWithClient implements Runnable {
                 case "sendHardScoreRank" -> answerSendHardScoreRank();
                 case "receiveHardScoreModeScore" -> receiveHardScoreModeScore();
                 case "applySpeedPVP" -> applySpeedPVP();
+                case "applyEnduringPVP" -> applyEnduringPVP();
             }
         }
     }
@@ -185,6 +186,11 @@ public class CommunicationWithClient implements Runnable {
 
     private void applySpeedPVP() {
         Server.SpeedMatchingQueue.add(this.socket);
+        isInPVPMode = true;
+    }
+
+    private void applyEnduringPVP() {
+        Server.EnduringMatchingQueue.add(this.socket);
         isInPVPMode = true;
     }
 }

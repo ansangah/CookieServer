@@ -3,7 +3,7 @@ package Server;
 import java.io.*;
 import java.net.Socket;
 
-public class SpeedPVPRelay implements Runnable {
+public class EnduringPVPRelay implements Runnable {
     //player1
     Socket player1;
     BufferedReader player1in;
@@ -13,7 +13,7 @@ public class SpeedPVPRelay implements Runnable {
     BufferedReader player2in;
     BufferedWriter player2out;
     //constructor
-    public SpeedPVPRelay(Socket player1, Socket player2) {
+    public EnduringPVPRelay(Socket player1, Socket player2) {
         this.player1 = player1;
         this.player2 = player2;
         try {
@@ -50,42 +50,29 @@ public class SpeedPVPRelay implements Runnable {
             e.printStackTrace();
         }
 
-        String player1position;
-        String player2position;
+        String player1life;
+        String player2life;
         while(true) {
             try {
-                player1position = player1in.readLine();
-                player2position = player2in.readLine();
-                if(player1position.equals("gameEnd")){
-                    player1out.write("end\nwinner\n");
-                    player2out.write("end\nloser\n");
-                    player1out.flush();
-                    player2out.flush();
-                    break;
-                }
-                else if(player2position.equals("gameEnd")){
+                player1life = player1in.readLine();
+                player2life = player2in.readLine();
+                if(player1life.equals("gameEnd")){
                     player1out.write("end\nloser\n");
                     player2out.write("end\nwinner\n");
                     player1out.flush();
                     player2out.flush();
                     break;
                 }
-                else if (player1position.equals("gameOver")) {
-                    player1out.write("end\nloser\n");
-                    player2out.write("end\nwinner\n");
-                    player1out.flush();
-                    player2out.flush();
-                    break;
-                }
-                else if (player2position.equals("gameOver")) {
+                else if(player2life.equals("gameEnd")){
                     player1out.write("end\nwinner\n");
                     player2out.write("end\nloser\n");
                     player1out.flush();
                     player2out.flush();
+                    break;
                 }
                 else{
-                    player1out.write(player2position + "\n");
-                    player2out.write(player1position + "\n");
+                    player1out.write(player2life + "\n");
+                    player2out.write(player1life + "\n");
                     player1out.flush();
                     player2out.flush();
                 }

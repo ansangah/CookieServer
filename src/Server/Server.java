@@ -11,6 +11,7 @@ public class Server{
     public static Map<String, Integer> HardScoreUserScore = new TreeMap<>();
     public static Map< Integer, List<String> > HardScoreUserRank = new TreeMap<>(Comparator.reverseOrder());
     public static Queue<Socket> SpeedMatchingQueue = new LinkedList<>();
+    public static Queue<Socket> EnduringMatchingQueue = new LinkedList<>();
 
     static public List<Socket> socketList = new ArrayList<>();
     public Server(int port){
@@ -59,6 +60,20 @@ public class Server{
                 Socket player1 = SpeedMatchingQueue.poll();
                 Socket player2 = SpeedMatchingQueue.poll();
                 new Thread(new SpeedPVPRelay(player1, player2)).start();
+            }
+        }).start();
+        new Thread(() -> {
+            while (!serverSocket.isClosed()){
+                while (EnduringMatchingQueue.size() < 2){
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Socket player1 = EnduringMatchingQueue.poll();
+                Socket player2 = EnduringMatchingQueue.poll();
+                new Thread(new EnduringPVPRelay(player1, player2)).start();
             }
         }).start();
     }

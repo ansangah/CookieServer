@@ -32,10 +32,11 @@ public class Main {
     private static String getMyIp(){
         String ip = "";
         try {
-            URL url = new URL("http://checkip.amazonaws.com");
+            URL url = new URL("https://checkip.amazonaws.com");
             URLConnection connection = url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             ip = in.readLine();
+            in.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
