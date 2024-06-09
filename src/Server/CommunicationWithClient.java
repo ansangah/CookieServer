@@ -75,22 +75,24 @@ public class CommunicationWithClient implements Runnable {
             newUserScore = Integer.parseInt(in.readLine());
             if (Server.NormalScoreUserScore.containsKey(userName)) {
                 int currentUserScore = Server.NormalScoreUserScore.get(userName);
-                List<String> userNames = Server.NormalScoreUserRank.get(currentUserScore);
+                if(newUserScore > currentUserScore) {
+                    List<String> userNames = Server.NormalScoreUserRank.get(currentUserScore);
 
-                Server.NormalScoreUserScore.remove(userName);
-                Server.NormalScoreUserScore.put(userName, newUserScore);
+                    Server.NormalScoreUserScore.remove(userName);
+                    Server.NormalScoreUserScore.put(userName, newUserScore);
 
-                Server.NormalScoreUserRank.remove(currentUserScore);
-                userNames.remove(userName);
-                Server.NormalScoreUserRank.put(currentUserScore, userNames);
+                    Server.NormalScoreUserRank.remove(currentUserScore);
+                    userNames.remove(userName);
+                    Server.NormalScoreUserRank.put(currentUserScore, userNames);
 
-                List<String> newUserNames = new ArrayList<>();
-                if (Server.NormalScoreUserRank.containsKey(newUserScore)) {
-                    newUserNames = Server.NormalScoreUserRank.get(newUserScore);
-                    Server.NormalScoreUserRank.remove(newUserScore);
+                    List<String> newUserNames = new ArrayList<>();
+                    if (Server.NormalScoreUserRank.containsKey(newUserScore)) {
+                        newUserNames = Server.NormalScoreUserRank.get(newUserScore);
+                        Server.NormalScoreUserRank.remove(newUserScore);
+                    }
+                    newUserNames.add(userName);
+                    Server.NormalScoreUserRank.put(newUserScore, newUserNames);
                 }
-                newUserNames.add(userName);
-                Server.NormalScoreUserRank.put(newUserScore, newUserNames);
             } else {
                 Server.NormalScoreUserScore.put(userName, newUserScore);
                 List<String> newUserNames = new ArrayList<>();
@@ -127,22 +129,24 @@ public class CommunicationWithClient implements Runnable {
             newUserScore = Integer.parseInt(in.readLine());
             if (Server.HardScoreUserScore.containsKey(userName)) {
                 int currentUserScore = Server.HardScoreUserScore.get(userName);
-                List<String> userNames = Server.HardScoreUserRank.get(currentUserScore);
+                if(newUserScore > currentUserScore) {
+                    List<String> userNames = Server.HardScoreUserRank.get(currentUserScore);
 
-                Server.HardScoreUserScore.remove(userName);
-                Server.HardScoreUserScore.put(userName, newUserScore);
+                    Server.HardScoreUserScore.remove(userName);
+                    Server.HardScoreUserScore.put(userName, newUserScore);
 
-                Server.HardScoreUserRank.remove(currentUserScore);
-                userNames.remove(userName);
-                Server.HardScoreUserRank.put(currentUserScore, userNames);
+                    Server.HardScoreUserRank.remove(currentUserScore);
+                    userNames.remove(userName);
+                    Server.HardScoreUserRank.put(currentUserScore, userNames);
 
-                List<String> newUserNames = new ArrayList<>();
-                if (Server.HardScoreUserRank.containsKey(newUserScore)) {
-                    newUserNames = Server.HardScoreUserRank.get(newUserScore);
-                    Server.HardScoreUserRank.remove(newUserScore);
+                    List<String> newUserNames = new ArrayList<>();
+                    if (Server.HardScoreUserRank.containsKey(newUserScore)) {
+                        newUserNames = Server.HardScoreUserRank.get(newUserScore);
+                        Server.HardScoreUserRank.remove(newUserScore);
+                    }
+                    newUserNames.add(userName);
+                    Server.HardScoreUserRank.put(newUserScore, newUserNames);
                 }
-                newUserNames.add(userName);
-                Server.HardScoreUserRank.put(newUserScore, newUserNames);
             } else {
                 Server.HardScoreUserScore.put(userName, newUserScore);
                 List<String> newUserNames = new ArrayList<>();
