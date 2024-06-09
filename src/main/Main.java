@@ -9,7 +9,7 @@ import java.net.URLConnection;
 import java.util.*;
 
 public class Main {
-    public static Server server = new Server(8000);
+    public static Server server = new Server(9000);
 
     public static void main(String[] args) {
         //현재 외부 IP 주소 출력
