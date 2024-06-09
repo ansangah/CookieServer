@@ -40,6 +40,7 @@ public class CommunicationWithClient implements Runnable {
                 case "applySpeedPVP" -> applySpeedPVP();
                 case "applyEnduringPVP" -> applyEnduringPVP();
                 case "sendSpeedRank" -> answerSendSpeedRank();
+                case "sendEnduringRank" -> answerSendEnduringRank();
             }
         }
     }
@@ -164,6 +165,18 @@ public class CommunicationWithClient implements Runnable {
         while (userScoreIterator.hasNext() && i < 100) {
             int userScore = userScoreIterator.next();
             List<String> userNames = Server.SpeedUserRank.get(userScore);
+            i = sendRankingInformation(i, userScore, userNames);
+        }
+        sendNullRankSpace(i);
+    }
+
+    private void answerSendEnduringRank() {
+        System.out.println("answerSendEnduringRank");
+        Iterator<Integer> userScoreIterator = Server.EnduringUserRank.keySet().iterator();
+        int i = 0;
+        while (userScoreIterator.hasNext() && i < 100) {
+            int userScore = userScoreIterator.next();
+            List<String> userNames = Server.EnduringUserRank.get(userScore);
             i = sendRankingInformation(i, userScore, userNames);
         }
         sendNullRankSpace(i);

@@ -12,6 +12,8 @@ public class Server{
     public static Map< Integer, List<String> > HardScoreUserRank = new TreeMap<>(Comparator.reverseOrder());
     public static Map<String, Integer> SpeedUserRating = new TreeMap<>();
     public static Map< Integer, List<String> > SpeedUserRank = new TreeMap<>(Comparator.reverseOrder());
+    public static Map<String, Integer> EnduringUserRating = new TreeMap<>();
+    public static Map< Integer, List<String> > EnduringUserRank = new TreeMap<>(Comparator.reverseOrder());
 
     public static Queue<Socket> SpeedMatchingQueue = new LinkedList<>();
     public static Queue<Socket> EnduringMatchingQueue = new LinkedList<>();
