@@ -34,6 +34,10 @@ public class EnduringPVPRelay implements Runnable {
     @Override
     public void run() {
         try {
+            player1out.write("connect\n");
+            player2out.write("connect\n");
+            player1out.flush();
+            player2out.flush();
             player1userName = player1in.readLine();
             player2userName = player2in.readLine();
             System.out.println("Player 1: " + player1userName + "Player 2: " + player2userName);
