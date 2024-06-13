@@ -30,6 +30,7 @@ public class CommunicationWithClient implements Runnable {
                 input = in.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
+                break;
             }
             switch (input) {
                 case "communicationExit" -> communicationExit();
