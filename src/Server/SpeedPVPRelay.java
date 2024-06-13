@@ -159,6 +159,7 @@ public class SpeedPVPRelay implements Runnable {
                 Thread.sleep(10);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
+                break;
             }
         }
         new Thread(new CommunicationWithClient(player1)).start();
