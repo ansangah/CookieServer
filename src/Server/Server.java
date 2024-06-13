@@ -64,18 +64,8 @@ public class Server{
                 }
                 Socket player1 = SpeedMatchingQueue.poll();
                 Socket player2 = SpeedMatchingQueue.poll();
-                if(player1.isConnected() && player2.isConnected()){
-                    System.out.println("matchingSuccess");
-                    new Thread(new SpeedPVPRelay(player1, player2)).start();
-                }
-                else{
-                    if(player1.isConnected()){
-                        SpeedMatchingQueue.add(player1);
-                    }
-                    if(player2.isConnected()){
-                        SpeedMatchingQueue.add(player2);
-                    }
-                }
+                System.out.println("matchingSuccess");
+                new Thread(new SpeedPVPRelay(player1, player2)).start();
             }
         }).start();
         new Thread(() -> {
@@ -89,18 +79,8 @@ public class Server{
                 }
                 Socket player1 = EnduringMatchingQueue.poll();
                 Socket player2 = EnduringMatchingQueue.poll();
-                if(player1.isConnected() && player2.isConnected()){
-                    System.out.println("matchingSuccess");
-                    new Thread(new EnduringPVPRelay(player1, player2)).start();
-                }
-                else{
-                    if(player1.isConnected()){
-                        EnduringMatchingQueue.add(player1);
-                    }
-                    if(player2.isConnected()){
-                        EnduringMatchingQueue.add(player2);
-                    }
-                }
+                System.out.println("matchingSuccess");
+                new Thread(new EnduringPVPRelay(player1, player2)).start();
             }
         }).start();
     }
